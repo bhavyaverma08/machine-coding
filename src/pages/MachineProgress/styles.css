@@ -20,6 +20,10 @@
   margin: 10px 10px 0px 0px ;
 }
 
+.button-styles:disabled {
+  opacity: 0.5;
+}
+
 .progress-bar{
   border-radius: 100px;
   height: 20px;

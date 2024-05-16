@@ -10,15 +10,19 @@ const MachineProgress = (props) => {
   const [intervalID, setIntervalID] = useState(null);
   const [pauseState, setPauseState] = useState(null);
 
+  function progressfunction(PP, PV, interval) {
+    progressPercentage = PP + PV;
+    setCompletedWidth(progressPercentage * 500);
+    if (Math.floor(progressPercentage) === 1) {
+      clearInterval(interval);
+    }
+  }
+
   // Function definitions
   function handleStart() {
     setPauseState(false);
     const myInterval = setInterval(() => {
-      progressPercentage = progressPercentage + percentageVariable;
-      setCompletedWidth(progressPercentage * 500);
-      if (Math.floor(progressPercentage) === 1) {
-        clearInterval(myInterval);
-      }
+      progressfunction(progressPercentage, percentageVariable, myInterval);
     }, timeInterval);
     setIntervalID(myInterval);
   }
@@ -33,19 +37,16 @@ const MachineProgress = (props) => {
     setPauseState(false);
     progressPercentage = Math.floor(completedWidth) / timeInterval;
     const myNewInterval = setInterval(() => {
-      progressPercentage = progressPercentage + percentageVariable;
-      setCompletedWidth(progressPercentage * 500);
-      if (Math.floor(progressPercentage) === 1) {
-        clearInterval(myNewInterval);
-      }
+      progressfunction(progressPercentage, percentageVariable, myNewInterval);
     }, timeInterval);
     setIntervalID(myNewInterval);
   }
 
   function handleReset() {
     setPauseState(false);
-    setCompletedWidth("0px");
+    setCompletedWidth(0);
     clearInterval(intervalID);
+    setIntervalID(null);
   }
 
   return (
@@ -56,16 +57,28 @@ const MachineProgress = (props) => {
         totalWidth={timeInterval.toString() + "px"}
       />
       <div className="button-container">
-        <button className="button-styles" onClick={handleStart}>
+        <button
+          disabled={intervalID}
+          className="button-styles"
+          style={{ background: "#40A578" }}
+          onClick={handleStart}
+        >
           Start
         </button>
         <button
+          style={{ background: "#FEB941" }}
+          disabled={intervalID === null}
           className="button-styles"
           onClick={pauseState ? handleResume : handlePause}
         >
           {pauseState ? "Resume" : "Pause"}
         </button>
-        <button className="button-styles" onClick={handleReset}>
+        <button
+          style={{ background: "#524C42" }}
+          className="button-styles"
+          onClick={handleReset}
+          disabled={intervalID === null}
+        >
           Reset
         </button>
       </div>
