@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./styles.css";
 
 const StarRating = () => {
-  const [Hover, setHover] = useState(null);
-  const [clickedStar, setClickedStar] = useState(null);
-  function handleHover(str) {
-    setHover(str);
-  }
-  function handleClickStar(str) {
-    setClickedStar(str);
-  }
+  const [rating, setrating] = useState({ hover: null, clicked: null });
+  const handleHover = useCallback((str) => {
+    setrating((prev)=>({...prev,hover:str}));
+  });
+  const handleClick = useCallback((str) => {
+    setrating((prev)=>({...prev,clicked:str}));
+  });
 
   return (
     <div className="star-rating-container">
@@ -21,23 +20,25 @@ const StarRating = () => {
               key={star}
               style={{ fontSize: "40px" }}
               onClick={() => {
-                handleClickStar(star);
+                handleClick(star);
               }}
-              className={`material-icons ${
-                Hover >= star || clickedStar >= star ? "hovered-star" : ""
+              className={`material-icons-round ${
+                rating.hover >= star || rating.clicked >= star
+                  ? "hovered-star"
+                  : ""
               }`}
               onMouseEnter={() => {
                 handleHover(star);
               }}
               onMouseLeave={() => {
-                handleHover(null);
+                setrating((prev)=>({...prev,hover:null}));
               }}
             >
               star
             </span>
           );
         })}
-        {clickedStar && <p>{`You have rated ${clickedStar}/5`}</p>}
+        {rating.clicked && <p>{`You have rated ${rating.clicked}/5`}</p>}
       </div>
     </div>
   );

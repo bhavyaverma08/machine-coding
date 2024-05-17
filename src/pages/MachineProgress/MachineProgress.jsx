@@ -1,83 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProgressBar from "./Components/ProgressBar";
 import "../MachineProgress/styles.css";
 
-const MachineProgress = (props) => {
-  const { timeInterval = 500, percentageVariable = 0.05 } = props;
-  var progressPercentage = 0.0;
-  let initialWidth = 0;
-  const [completedWidth, setCompletedWidth] = useState(initialWidth);
-  const [intervalID, setIntervalID] = useState(null);
-  const [pauseState, setPauseState] = useState(null);
+const MachineProgress = ({ timeInterval = 500, percentageVariable = 0.05 }) => {
+  const [completedWidth, setCompletedWidth] = useState(0);
+  const [isPaused, setIsPaused] = useState(true);
+  const progressPercentage = useRef(0);
+  const intervalID = useRef(null);
 
-  function progressfunction(PP, PV, interval) {
-    progressPercentage = PP + PV;
-    setCompletedWidth(progressPercentage * 500);
-    if (Math.floor(progressPercentage) === 1) {
-      clearInterval(interval);
+  const progressFunction = () => {
+    progressPercentage.current += percentageVariable;
+    setCompletedWidth(progressPercentage.current * 500);
+
+    if (progressPercentage.current >= 1) {
+      clearInterval(intervalID.current);
     }
-  }
+  };
 
-  // Function definitions
-  function handleStart() {
-    setPauseState(false);
-    const myInterval = setInterval(() => {
-      progressfunction(progressPercentage, percentageVariable, myInterval);
-    }, timeInterval);
-    setIntervalID(myInterval);
-  }
+  const handleStart = () => {
+    if (intervalID.current) return;
+    setIsPaused(false);
+    intervalID.current = setInterval(progressFunction, timeInterval);
+  };
 
-  function handlePause() {
-    setPauseState(true);
-    initialWidth = completedWidth;
-    clearInterval(intervalID);
-  }
+  const handlePause = () => {
+    if (!intervalID.current) return;
+    setIsPaused(true);
+    clearInterval(intervalID.current);
+    intervalID.current = null;
+  };
 
-  function handleResume() {
-    setPauseState(false);
-    progressPercentage = Math.floor(completedWidth) / timeInterval;
-    const myNewInterval = setInterval(() => {
-      progressfunction(progressPercentage, percentageVariable, myNewInterval);
-    }, timeInterval);
-    setIntervalID(myNewInterval);
-  }
+  const handleResume = () => {
+    if (intervalID.current) return;
+    setIsPaused(false);
+    intervalID.current = setInterval(progressFunction, timeInterval);
+  };
 
-  function handleReset() {
-    setPauseState(false);
+  const handleReset = () => {
+    setIsPaused(true);
+    clearInterval(intervalID.current);
+    intervalID.current = null;
+    progressPercentage.current = 0;
     setCompletedWidth(0);
-    clearInterval(intervalID);
-    setIntervalID(null);
-  }
+  };
+
+  useEffect(() => {
+    return () => clearInterval(intervalID.current);
+  }, []);
 
   return (
     <div className="progress-container">
       <h2>Machine-Progress</h2>
       <ProgressBar
-        completedWidth={completedWidth.toString() + "px"}
-        totalWidth={timeInterval.toString() + "px"}
+        completedWidth={`${completedWidth}px`}
+        totalWidth={`${timeInterval}px`}
       />
       <div className="button-container">
         <button
-          disabled={intervalID}
+          disabled={!isPaused && intervalID.current}
           className="button-styles"
           style={{ background: "#40A578" }}
           onClick={handleStart}
         >
-          Start
+          {completedWidth > 0 ? "Resume" : "Start"}
         </button>
         <button
           style={{ background: "#FEB941" }}
-          disabled={intervalID === null}
+          disabled={!intervalID.current}
           className="button-styles"
-          onClick={pauseState ? handleResume : handlePause}
+          onClick={handlePause}
         >
-          {pauseState ? "Resume" : "Pause"}
+          {"Pause"}
         </button>
         <button
           style={{ background: "#524C42" }}
           className="button-styles"
           onClick={handleReset}
-          disabled={intervalID === null}
+          // disabled={!intervalID.current}
         >
           Reset
         </button>
