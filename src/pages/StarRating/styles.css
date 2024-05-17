@@ -1,0 +1,9 @@
+.star-rating-container{
+    padding: 20px;
+}
+
+.hovered-star {
+  color: #f3ca52;
+  cursor: pointer;
+}
+
