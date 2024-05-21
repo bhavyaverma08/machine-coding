@@ -1,5 +1,6 @@
 import MachineProgress from "../../pages/MachineProgress/MachineProgress";
 import StarRating from "../../pages/StarRating/StarRating";
+import StopWatch from "../../pages/StopWatch/StopWatch";
 
 export const DemoData = [
   {
@@ -10,11 +11,18 @@ export const DemoData = [
     demoComponent: <MachineProgress />,
   },
   {
-    id: 1,
+    id: 2,
     demoName: "5 Star rating",
     demoDescription: "Here comes the description",
     demoRoute: "/star-rating",
     demoComponent: <StarRating />,
+  },
+  {
+    id: 3,
+    demoName: "Stop Watch",
+    demoDescription: "Here comes the description",
+    demoRoute: "/stop-watch",
+    demoComponent: <StopWatch />,
   },
 ];
 
