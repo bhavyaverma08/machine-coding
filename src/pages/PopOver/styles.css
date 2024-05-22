@@ -1,0 +1,33 @@
+.button-styles {
+  width: 100px;
+  height: 30px;
+  background-color: cornflowerblue;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  margin: 10px 10px 0px 0px;
+}
+.pop-up {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.34);
+  height: 300px;
+  width: 500px;
+  left: 20%;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+.pop-up-container-shadow {
+  background: rgba(0, 0, 0, 0.29);
+  height: 100vh;
+  width: 100vw;
+  padding: 50px;
+}
+.pop-up-container {
+  padding: 50px;
+  height: 100vh;
+  width: 100vw;
+  background: white;
+}

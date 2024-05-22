@@ -1,4 +1,5 @@
 import MachineProgress from "../../pages/MachineProgress/MachineProgress";
+import PopOver from "../../pages/PopOver/PopOver";
 import StarRating from "../../pages/StarRating/StarRating";
 import StopWatch from "../../pages/StopWatch/StopWatch";
 
@@ -23,6 +24,13 @@ export const DemoData = [
     demoDescription: "Here comes the description",
     demoRoute: "/stop-watch",
     demoComponent: <StopWatch />,
+  },
+  {
+    id: 4,
+    demoName: "Pop-Over Component",
+    demoDescription: "Here comes the description",
+    demoRoute: "/pop-over",
+    demoComponent: <PopOver />,
   },
 ];
 
