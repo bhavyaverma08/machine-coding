@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import PageLayout from "../../Layouts/PageLayout";
 import "./styles.css";
 
 const StopWatch = () => {
@@ -25,25 +26,27 @@ const StopWatch = () => {
     return time;
   };
   return (
-    <div className="watch-container">
-      <h2>Stop Watch</h2>
-      <p>{getFormattedTime(time)}</p>
-      <div className="button-container">
-        <button
-          disabled={timeInProgress}
-          className="button-styles"
-          onClick={handleStart}
-        >
-          Start
-        </button>
-        <button className="button-styles" onClick={handleStop}>
-          Stop
-        </button>
-        <button className="button-styles" onClick={handleReset}>
-          Reset
-        </button>
+    <PageLayout>
+      <div className="watch-container">
+        <h2>Stop Watch</h2>
+        <p>{getFormattedTime(time)}</p>
+        <div className="button-container">
+          <button
+            disabled={timeInProgress}
+            className="button-styles"
+            onClick={handleStart}
+          >
+            Start
+          </button>
+          <button className="button-styles" onClick={handleStop}>
+            Stop
+          </button>
+          <button className="button-styles" onClick={handleReset}>
+            Reset
+          </button>
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ProgressBar from "./Components/ProgressBar";
 import "../MachineProgress/styles.css";
+import PageLayout from "../../Layouts/PageLayout";
 
 const MachineProgress = ({ timeInterval = 500, percentageVariable = 0.05 }) => {
   const [completedWidth, setCompletedWidth] = useState(0);
@@ -49,39 +50,41 @@ const MachineProgress = ({ timeInterval = 500, percentageVariable = 0.05 }) => {
   }, []);
 
   return (
-    <div className="progress-container">
-      <h2>Machine-Progress</h2>
-      <ProgressBar
-        completedWidth={`${completedWidth}px`}
-        totalWidth={`${timeInterval}px`}
-      />
-      <div className="button-container">
-        <button
-          disabled={!isPaused && intervalID.current}
-          className="button-styles"
-          style={{ background: "#40A578" }}
-          onClick={handleStart}
-        >
-          {completedWidth > 0 ? "Resume" : "Start"}
-        </button>
-        <button
-          style={{ background: "#FEB941" }}
-          disabled={!intervalID.current}
-          className="button-styles"
-          onClick={handlePause}
-        >
-          {"Pause"}
-        </button>
-        <button
-          style={{ background: "#524C42" }}
-          className="button-styles"
-          onClick={handleReset}
-          // disabled={!intervalID.current}
-        >
-          Reset
-        </button>
+    <PageLayout>
+      <div className="progress-container">
+        <h2>Machine-Progress</h2>
+        <ProgressBar
+          completedWidth={`${completedWidth}px`}
+          totalWidth={`${timeInterval}px`}
+        />
+        <div className="button-container">
+          <button
+            disabled={!isPaused && intervalID.current}
+            className="button-styles"
+            style={{ background: "#40A578" }}
+            onClick={handleStart}
+          >
+            {completedWidth > 0 ? "Resume" : "Start"}
+          </button>
+          <button
+            style={{ background: "#FEB941" }}
+            disabled={!intervalID.current}
+            className="button-styles"
+            onClick={handlePause}
+          >
+            {"Pause"}
+          </button>
+          <button
+            style={{ background: "#524C42" }}
+            className="button-styles"
+            onClick={handleReset}
+            // disabled={!intervalID.current}
+          >
+            Reset
+          </button>
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

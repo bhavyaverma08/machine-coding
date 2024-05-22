@@ -1,9 +1,9 @@
 # The Project contains the following common machine codes - 
-1. Progress bar
-2. Stop Watch
-3. Star Rating functionality
-4. Pop Over component
-5. Accordion UI component
+1. Progress bar ✅
+2. Stop Watch ✅
+3. Star Rating functionality ✅
+4. Pop Over component ✅
+5. Accordion UI component 
 6. Carousel for displaying images
 7. Build a grid using HTML/CSS and JavaScript with search, sort, and event bubbling (Amazon onsite)
 8. Design a responsive NavBar

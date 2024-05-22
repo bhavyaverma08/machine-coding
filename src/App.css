@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.main-container {
+  padding: 10px;
+}
+
+.card-container {
+  border: 1px solid rgb(176, 176, 176);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 5px 0px 0px;
+}
+
+.demo-name{
+  font-weight: bold;
+  color: royalblue;
+  
+}
+
+.home-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  width: 100vw;
+}
