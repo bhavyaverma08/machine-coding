@@ -20,7 +20,7 @@ const PopOver = () => {
       >
         Open Pop-up
       </button>
-      {open && <PopUp />}
+      {open && <PopUp handleClose={() => setOpen(false)} />}
     </div>
   );
 };

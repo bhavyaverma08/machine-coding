@@ -10,14 +10,17 @@
 }
 .pop-up {
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   background-color: white;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.34);
   height: 300px;
   width: 500px;
-  left: 20%;
+  left: 30%;
   border-radius: 10px;
   padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .pop-up-container-shadow {
   background: rgba(0, 0, 0, 0.29);
