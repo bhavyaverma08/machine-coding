@@ -1,3 +1,4 @@
+import Accordion from "../../pages/Accordion/Accordion";
 import MachineProgress from "../../pages/MachineProgress/MachineProgress";
 import PopOver from "../../pages/PopOver/PopOver";
 import StarRating from "../../pages/StarRating/StarRating";
@@ -35,6 +36,14 @@ export const DemoData = [
       "A small overlay window that appears upon user interaction, providing additional information or options related to the current view without navigating away from the page.",
     demoRoute: "/pop-over",
     demoComponent: <PopOver />,
+  },
+  {
+    id: 5,
+    demoName: "Accordion Component",
+    demoDescription:
+      "A UI element that allows users to expand and collapse sections of content, enabling efficient information display by showing only the relevant details when needed.",
+    demoRoute: "/accordion",
+    demoComponent: <Accordion />,
   },
 ];
 
