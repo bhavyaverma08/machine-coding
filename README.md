@@ -3,11 +3,13 @@
 2. Stop Watch ✅
 3. Star Rating functionality ✅
 4. Pop Over component ✅
-5. Accordion UI component 
-6. Carousel for displaying images
+5. Accordion UI component ✅
+6. Nested Comments 
+7. Carousel for displaying images
+8. Implement Infinite Scroll feature
 7. Build a grid using HTML/CSS and JavaScript with search, sort, and event bubbling (Amazon onsite)
 8. Design a responsive NavBar
-9. Implement Infinite Scroll feature
+
 10. Develop Typeahead/Autocomplete functionality using a trie data structure
 11. Debounce function
 12. Build a Tic Tac Toe game

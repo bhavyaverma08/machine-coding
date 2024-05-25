@@ -3,6 +3,7 @@ import MachineProgress from "../../pages/MachineProgress/MachineProgress";
 import PopOver from "../../pages/PopOver/PopOver";
 import StarRating from "../../pages/StarRating/StarRating";
 import StopWatch from "../../pages/StopWatch/StopWatch";
+import GamePage from "../../pages/TicTacToe/GamePage";
 
 export const DemoData = [
   {
@@ -44,6 +45,14 @@ export const DemoData = [
       "A UI element that allows users to expand and collapse sections of content, enabling efficient information display by showing only the relevant details when needed.",
     demoRoute: "/accordion",
     demoComponent: <Accordion />,
+  },
+  {
+    id: 6,
+    demoName: "Tic Tac Toe Game",
+    demoRoute: "/tictactoe",
+    demoComponent: <GamePage />,
+    demoDescription:
+      "Tic Tac Toe is a two-player game where players take turns marking a 3x3 grid with X or O. The goal is to be the first to get three of their symbols in a row, either horizontally, vertically, or diagonally. The game is simple and often ends in a draw if neither player wins.",
   },
 ];
 
